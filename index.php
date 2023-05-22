@@ -71,7 +71,12 @@ if(isset($_POST['submit'])){
                         <?php foreach($rows as $row) : ?>
                         <tr>
                             <th scope="row"><?php echo $row->url; ?></th>
-                            <td>Mark</td>
+                            <td>
+                                <a href="http://localhost/short-urls/u?id=<?php echo $row->id; ?>" target="_blank
+                                ">
+                                    http://localhost/short-urls/u?id=<?php echo $row->id; ?>
+                                </a>
+                            </td>
                             <td><?php echo $row->clicks; ?></td>
                         </tr>
                         <?php endforeach; ?>
