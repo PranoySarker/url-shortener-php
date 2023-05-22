@@ -2,10 +2,7 @@
 
 <?php
 
-$select = $conn->query('SELECT * FROM urls');
-$select->execute();
 
-$rows = $select->fetchAll(PDO::FETCH_OBJ);
 
 if(isset($_POST['submit'])){
     if($_POST['url'] == ''){
@@ -18,7 +15,13 @@ if(isset($_POST['submit'])){
             ':url' => $url
         ]));
     }
+
+   
 }
+$select = $conn->query('SELECT * FROM urls');
+$select->execute();
+
+$rows = $select->fetchAll(PDO::FETCH_OBJ);
 
 ?>
 <!DOCTYPE html>
@@ -56,7 +59,7 @@ if(isset($_POST['submit'])){
         </div>
     </div>
 
-    <div class="conatiner">
+    <div class="conatiner" id="table">
         <div class="row gx-4 gx-lg-5 justify-content-center">
             <div class="col-md-10 col-lg-8 col-xl-7">
                 <table class="table mt-4">
@@ -72,7 +75,8 @@ if(isset($_POST['submit'])){
                         <tr>
                             <th scope="row"><?php echo $row->url; ?></th>
                             <td>
-                                <a href="http://localhost/short-urls/u?id=<?php echo $row->id; ?>" target="_blank
+                                <a id="count" onclick="myFunction()"
+                                    href="http://localhost/short-urls/u?id=<?php echo $row->id; ?>" target="_blank 
                                 ">
                                     http://localhost/short-urls/u?id=<?php echo $row->id; ?>
                                 </a>
@@ -90,6 +94,16 @@ if(isset($_POST['submit'])){
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"></script>
     <!-- Core theme JS-->
+
+    <script>
+    const count = document.getElementById('count');
+
+    const myFunction = () => {
+        setInterval(() => {
+            window.location.reload();
+        }, 3000);
+    }
+    </script>
 </body>
 
 </html>

@@ -9,6 +9,14 @@ if(isset($_GET['id'])){
     $select->execute();
     
     $data = $select->fetch(PDO::FETCH_OBJ);
+
+    // counting clicks
+    $clicks = $data->clicks +1;
+
+    $update = $conn->prepare("UPDATE urls SET clicks=:clicks WHERE id='$id'");
+    $update->execute([
+        ':clicks' => $clicks
+    ]);
     
     header("location: ".$data->url."");
     }
